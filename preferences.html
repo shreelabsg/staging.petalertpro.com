@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="config.js"></script>
+    <title>Update Preferences - PetAlert</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            padding-top:20px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            color: #555;
+            display: block; /* Ensures label is on a separate line */
+            margin-bottom: 5px;
+            font-weight:bold;
+        }
+
+        .inline-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .inline-group label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .email-display {
+            font-weight: bold;
+            color: #222;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-group input {
+            margin: 0;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+            flex-grow: 1;
+            font-weight:bold;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #007bff;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Update Your Preferences</h2>
+
+        <div id="error" class="error-message">Invalid or missing preference link.</div>
+        <div id="loading" class="loading">Processing... Please wait.</div>
+
+        <form id="preferences-form" style="display: none;">
+            
+            <div class="inline-group">
+                <label>Email:</label>
+                <span id="email-display" class="email-display"></span>
+            </div>
+
+            <div class="input-group">
+                <label for="brands">Enter pet food brands to track (optional, comma separated):</label>
+                <input type="text" id="brands" placeholder="e.g., Brand1, Brand2, Brand3">
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="trackOnly">
+                <label for="trackOnly">Send alerts only for my tracked brands (even if they include non-pet products)</label>
+            </div>
+
+            <button type="submit" id="update-btn">Update Preferences</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get("token");
+            const form = document.getElementById("preferences-form");
+            const errorDiv = document.getElementById("error");
+            const loadingDiv = document.getElementById("loading");
+            const emailDisplay = document.getElementById("email-display");
+            const brandsInput = document.getElementById("brands");
+            const trackOnlyCheckbox = document.getElementById("trackOnly");
+            const updateBtn = document.getElementById("update-btn");
+
+            if (!token) {
+                errorDiv.style.display = "block";
+                return;
+            }
+
+            loadingDiv.style.display = "block";
+            updateBtn.disabled = true;
+            brandsInput.disabled = true;
+            trackOnlyCheckbox.disabled = true;
+
+            try {
+                const response = await apiRequest(`/preferences?token=${token}`);
+                const data = await response.json();
+
+                if (data.status === "error") {
+                    errorDiv.textContent = data.message;
+                    errorDiv.style.display = "block";
+                } else {
+                    form.style.display = "block";
+                    emailDisplay.textContent = data.email;
+                    brandsInput.value = data.brands || "";
+                    trackOnlyCheckbox.checked = data.trackedOnly === "Yes";
+                }
+            } catch (error) {
+                errorDiv.textContent = "Failed to load preferences.";
+                errorDiv.style.display = "block";
+            } finally {
+                loadingDiv.style.display = "none";
+                updateBtn.disabled = false;
+                brandsInput.disabled = false;
+                trackOnlyCheckbox.disabled = false;
+            }
+
+            form.addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                const updatedBrands = brandsInput.value.trim();
+                const updatedTrackedOnly = trackOnlyCheckbox.checked ? "true" : "false";
+
+                const formData = new FormData();
+                formData.append("token", token);
+                formData.append("brands", updatedBrands);
+                formData.append("trackedOnly", updatedTrackedOnly);
+
+                loadingDiv.style.display = "block";
+                updateBtn.disabled = true;
+                brandsInput.disabled = true;
+                trackOnlyCheckbox.disabled = true;
+
+                try {
+                    const response = await apiRequest("/update-preferences", {
+                        method: "POST",
+                        body: formData
+                    });
+
+                    const result = await response.json();
+                    if (result.status === "success") {
+                        alert("Preferences updated successfully!");
+                    } else {
+                        alert("Error updating preferences: " + result.message);
+                    }
+                } catch (error) {
+                    alert("Network error. Please try again.");
+                } finally {
+                    loadingDiv.style.display = "none";
+                    updateBtn.disabled = false;
+                    brandsInput.disabled = false;
+                    trackOnlyCheckbox.disabled = false;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

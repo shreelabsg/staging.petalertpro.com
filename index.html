@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetAlertPro - Instant Pet Food Recall Alerts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        .input-group {
+            margin-top: 15px;
+            text-align: left;
+        }
+        label {
+            font-size: 1em;
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="email"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .checkbox-group input {
+            margin-right: 10px;
+            transform: scale(1.2);
+            margin-top: 4px;
+        }
+        .checkbox-group label {
+            flex: 1;
+            font-size: 1em;
+            font-weight: 600;
+            color: #333;
+        }
+        .button {
+            background: #e74c3c;
+            color: white;
+            padding: 14px 28px;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .button:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        .loading {
+            display: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 15px;
+        }
+        .why-list {
+            text-align: left;
+            font-size: 1em;
+            margin: 20px 0;
+            padding: 0 10px;
+        }
+        .why-list ul {
+            padding-left: 20px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #555;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+         <h2> THIS TOOL IS NOT LIVE YET. PLEASE KEEP CHECKING </h2>
+        <h1>🚨 PetAlertPro: Instant Pet Food Recall Alerts! 🐶🐱</h1>
+
+        <div class="why-list">
+            <h2>Why PetAlertPro?</h2>
+            <ul>
+                <li>🚀 Instant pet food recall alerts</li>
+                <li>🛡️ Protects your pets from harmful food</li>
+                <li>🔎 Track specific brands or receive all alerts</li>
+                <li>📧 Get alerts directly in your inbox</li>
+                <li>💲 Affordable at just $10/month</li>
+            </ul>
+        </div>
+
+        <div class="input-group">
+            <label for="email">Enter your email:</label>
+            <input type="email" id="email" placeholder="example@email.com" required>
+        </div>
+
+        <div class="input-group">
+            <label for="brands">Enter pet food brands to track (optional, comma separated):</label>
+            <input type="text" id="brands" placeholder="e.g., Brand1, Brand2, Brand3">
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="trackOnly">
+            <label for="trackOnly">Send alerts only for my tracked brands (even if they include non-pet products)</label>
+        </div>
+
+        <button class="button" id="subscribe-button">Get Real-Time Alerts - $10/month</button>
+        <div class="loading" id="loading">Processing... Please wait.</div>
+
+        <div class="footer">
+            <p>&copy; 2025 PetAlertPro. All rights reserved.</p>
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("subscribe-button").addEventListener("click", async function () {
+            var email = document.getElementById("email").value.trim();
+            var brands = document.getElementById("brands").value.trim();
+            var trackOnly = document.getElementById("trackOnly").checked;
+
+            if (!email) {
+                alert("Please enter a valid email.");
+                return;
+            }
+
+            // Disable inputs and show processing message
+            document.getElementById("subscribe-button").disabled = true;
+            document.getElementById("email").disabled = true;
+            document.getElementById("brands").disabled = true;
+            document.getElementById("trackOnly").disabled = true;
+            document.getElementById("loading").style.display = "block";
+
+            try {
+                var formData = new FormData();
+                formData.append("email", email);
+                formData.append("brands", brands);
+                formData.append("trackedOnly", trackOnly.toString());
+
+                let response = await apiRequest("/subscribe", {
+                    method: "POST",
+                    body: formData
+                });
+
+                let data = await response.json();
+                if (data.status === "503") {
+                  // Redirect to the maintenance page
+                  window.location.href = "/maintenance.html";
+                }
+                else if (data.status === "success") {
+                    window.location.href = "https://petalertpro.com/thank-you.html";
+                } else {
+                    alert(data.message || "Something went wrong. Please try again.");
+                }
+            } catch (error) {
+                alert("Failed to submit. Please try again later.");
+                console.error("Error:", error);
+            } finally {
+                // Re-enable inputs and hide loading message
+                document.getElementById("subscribe-button").disabled = false;
+                document.getElementById("email").disabled = false;
+                document.getElementById("brands").disabled = false;
+                document.getElementById("trackOnly").disabled = false;
+                document.getElementById("loading").style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
