@@ -9,7 +9,7 @@ const API_BASE_URL = isStaging
 // Helper function to make API calls
 function apiRequest(endpoint, options = {}) {
   return fetch(`${API_BASE_URL}${endpoint}`, options)
-    .then(response => response.json())
+    .then(response => response)
     .catch(error => console.error("API Error:", error));
 }
 
