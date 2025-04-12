@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <script src="config.js?v=1"></script>
+   <script src="config.js?v=5"></script>
     <title>Update Preferences - PetAlert</title>
     <style>
         body {
@@ -147,6 +147,11 @@
                 <label for="trackOnly">Send alerts only for my tracked brands (even if they include non-pet products)</label>
             </div>
 
+            <div class="checkbox-group">
+                <input type="checkbox" id="subscribed">
+                <label for="subscribed">Subscribed to Alerts</label>
+            </div>
+
             <button type="submit" id="update-btn">Update Preferences</button>
         </form>
     </div>
@@ -161,6 +166,7 @@
             const emailDisplay = document.getElementById("email-display");
             const brandsInput = document.getElementById("brands");
             const trackOnlyCheckbox = document.getElementById("trackOnly");
+            const subscribedCheckbox = document.getElementById("subscribed");
             const updateBtn = document.getElementById("update-btn");
 
             if (!token) {
@@ -172,12 +178,17 @@
             updateBtn.disabled = true;
             brandsInput.disabled = true;
             trackOnlyCheckbox.disabled = true;
+            subscribedCheckbox.disabled = true;
 
             try {
                 const response = await apiRequest(`/preferences?token=${token}`);
                 const data = await response.json();
 
-                if (data.status === "error") {
+                if (data.status === "503") {
+                  // Redirect to the maintenance page
+                  window.location.href = "/maintenance.html";
+                }
+                else if (data.status === "error") {
                     errorDiv.textContent = data.message;
                     errorDiv.style.display = "block";
                 } else {
@@ -185,6 +196,7 @@
                     emailDisplay.textContent = data.email;
                     brandsInput.value = data.brands || "";
                     trackOnlyCheckbox.checked = data.trackedOnly === "Yes";
+                    subscribedCheckbox.checked = data.subscribed === "YES";
                 }
             } catch (error) {
                 errorDiv.textContent = "Failed to load preferences.";
@@ -194,23 +206,37 @@
                 updateBtn.disabled = false;
                 brandsInput.disabled = false;
                 trackOnlyCheckbox.disabled = false;
+                subscribedCheckbox.disabled = false;
             }
 
             form.addEventListener("submit", async function (event) {
                 event.preventDefault();
 
                 const updatedBrands = brandsInput.value.trim();
+
+                const inputBrands = updatedBrands.split(",").map(b => b.trim()).filter(b => b.length > 0);
+                const invalidBrands = inputBrands.filter(b => b.replace(/\s/g, "").length < 4);
+                
+                  if (invalidBrands.length > 0) {
+                    //e.preventDefault();
+                    alert("Each brand must be at least 4 characters long (excluding spaces).");
+                    return;
+                  }
+                
                 const updatedTrackedOnly = trackOnlyCheckbox.checked ? "true" : "false";
+                const updatedSubscribed = subscribedCheckbox.checked ? "true" : "false";
 
                 const formData = new FormData();
                 formData.append("token", token);
                 formData.append("brands", updatedBrands);
                 formData.append("trackedOnly", updatedTrackedOnly);
+                formData.append("subscribed", updatedSubscribed);
 
                 loadingDiv.style.display = "block";
                 updateBtn.disabled = true;
                 brandsInput.disabled = true;
                 trackOnlyCheckbox.disabled = true;
+                subscribedCheckbox.disabled = true;
 
                 try {
                     const response = await apiRequest("/update-preferences", {
@@ -219,7 +245,11 @@
                     });
 
                     const result = await response.json();
-                    if (result.status === "success") {
+                    if (result.status === "503") {
+                      // Redirect to the maintenance page
+                      window.location.href = "/maintenance.html";
+                    }
+                    else if (result.status === "success") {
                         alert("Preferences updated successfully!");
                     } else {
                         alert("Error updating preferences: " + result.message);
@@ -231,6 +261,7 @@
                     updateBtn.disabled = false;
                     brandsInput.disabled = false;
                     trackOnlyCheckbox.disabled = false;
+                    subscribedCheckbox.disabled = false;
                 }
             });
         });

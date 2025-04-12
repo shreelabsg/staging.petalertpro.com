@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - PetAlertPro</title>
+    <meta name="description" content="Discover how PetAlertPro helps you stay informed about pet food recalls with advanced tracking and email notifications.">
+    <meta name="robots" content="index, follow">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+            padding-top:60px;
+        }
+        .navbar {
+            background: #e74c3c;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0px 30px 0px 0px;
+            margin: 0;
+        }
+        .navbar .nav-links li {
+            display: inline;
+        }
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .navbar .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #e74c3c;
+            text-align: center;
+            font-weight: bold;
+        }
+        h2 {
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        p {
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-item {
+            background: #f3f3f3;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .info-box {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 5px solid #e74c3c;
+            margin: 20px 0;
+            font-size: 15px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #555;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer-help {
+            margin-bottom: 10px;
+        }
+    
+        .footer-help h4 {
+            margin: 0;
+            color: #e74c3c;
+            font-size: 16px;
+        }
+    
+        .footer-help p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .footer-divider 
+        {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 10px auto;
+            width: 80%;
+        }
+        .subscribe-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            background: #e74c3c;
+            padding: 14px;
+            border-radius: 6px;
+            max-width: 270px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background 0.3s;
+        }
+        .subscribe-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="index.html" class="logo">PetAlertPro</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1>🚀 Stay Informed, Protect Your Pet</h1>
+        <p>PetAlertPro is designed to help pet owners receive **timely updates** about pet food recalls. We track announcements from **trusted sources like the FDA** to ensure you never miss an important alert.</p>
+
+        <h2>📢 How It Works</h2>
+        <p>Our system continuously checks for recall notices. If a recall matches your preferences, you’ll receive an email alert.</p>
+
+        <ul>
+            <li class="feature-item">🚀 **Continuous Monitoring** – We scan for recalls regularly.</li>
+            <li class="feature-item">🔎 **Keyword-Based Detection** – We identify recalls by scanning for specific pet-related terms such as "dog food," "cat food," "pet treat," etc.</li>
+            <li class="feature-item">📩 **Email Notifications** – Delivered directly to your inbox.</li>
+        </ul>
+
+        <h2>🔍 Brand Tracking Explained</h2>
+        <p>You can **track specific pet food brands** and customize the alerts you receive.</p>
+        <div class="info-box">
+            <strong>📌 Option 1:</strong> Enter a brand **without checking** "Send alerts only for my tracked brands."  
+            ➝ You’ll receive **all pet food recalls**, but emails will have personalised subject.  
+            <br><br>
+            <strong>✅ Option 2:</strong> Enter a brand **and check** "Send alerts only for my tracked brands."  
+            ➝ You’ll receive **alerts only if your tracked brand is involved**, even if it’s for a non-pet product.
+        </div>
+
+        <h2>📧 What an Alert Looks Like</h2>
+        <p>Here’s an example of the tracked brand email you’ll receive when a recall is detected:</p>
+          <img src="TrackedBrand.png" alt="Tracked Brand Alert Email" style="width:100%;display:block; margin: 20px auto; border-radius: 6px;">
+
+        <h2>💡 What’s Included in Your Subscription?</h2>
+        <ul>
+            <li class="feature-item">🚀 **Fast pet food recall alerts** from official sources.</li>
+            <li class="feature-item">📊 **Brand tracking** for personalized notifications.</li>
+            <li class="feature-item">⚡ **No spam** – only essential recall updates.</li>
+            <li class="feature-item">✅ **Easy preference updates** anytime.</li>
+        </ul>
+
+        <h2>⚠️ Limitations</h2>
+        <p>While we strive to provide accurate and timely alerts, there are some important considerations:</p>
+        <ul>
+            <li>⏳ **Official sources may have delays** – Recalls are published at different times.</li>
+            <li>🛑 **Some recalls may not be included** – We detect recalls based on specific pet-related keywords. If a recall **doesn’t explicitly mention pet food-related terms**, it may not be detected.</li>
+        </ul>
+
+        <br/>
+        <a href="index.html" class="subscribe-btn">🚀 Subscribe Now</a>
+
+        <div class="footer">
+             <hr class="footer-divider">
+            <div class="footer-help">
+                <h4>Need Help?</h4>
+                <p>For any questions, check our <a href="faq.html">FAQ</a> or contact us at <a href="mailto:support@petalertpro.com">support@petalertpro.com</a>.</p>
+            </div>
+            <hr class="footer-divider">
+            <p>&copy; 2025 PetAlertPro. All rights reserved.</p>
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+        
+        <div class="footer">
+            🐾 Stay informed and keep your pets safe! – The PetAlertPro Team
+        </div>
+    </div>
+
+</body>
+</html>

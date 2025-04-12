@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - PetAlertPro</title>
+    <meta name="description" content="Find answers to common questions about PetAlertPro, pet food recall and contamination tracking, and subscription details.">
+    <meta name="robots" content="index, follow">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+            padding-top:60px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1, h2 {
+            color: #e74c3c;
+            text-align: center;
+        }
+        h2 {
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+            color: #2c3e50;
+        }
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+        }
+        .faq-question:hover {
+            color: #e74c3c;
+        }
+         .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: white;
+            background: #e44d26;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
+        .home-link:hover {
+            background: #c0392b;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #555;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer-help {
+            margin-bottom: 10px;
+        }
+    
+        .footer-help h4 {
+            margin: 0;
+            color: #e74c3c;
+            font-size: 16px;
+        }
+    
+        .footer-help p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .footer-divider 
+        {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 10px auto;
+            width: 80%;
+        }
+        .navbar {
+            background: #e74c3c;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0px 30px 0px 0px;
+            margin: 0;
+        }
+        .navbar .nav-links li {
+            display: inline;
+        }
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .navbar .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var questions = document.querySelectorAll(".faq-question");
+            questions.forEach(function(question) {
+                question.addEventListener("click", function() {
+                    var answer = this.nextElementSibling;
+                    answer.style.display = answer.style.display === "block" ? "none" : "block";
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+ <div class="navbar">
+        <a href="index.html" class="logo">PetAlertPro</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        
+        <div class="faq-item">
+            <p class="faq-question">❓ What is PetAlertPro?</p>
+            <p class="faq-answer">PetAlertPro is a subscription-based pet food recall alert service. We track recalls from official sources like the FDA and notify subscribers via email.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">📢 How does PetAlertPro work?</p>
+            <div class="faq-answer">
+               We scan official recall sources every 2 hours. Our system intelligently analyzes each recall to determine if it is relevant to pet owners, specifically for <strong>dog and cat food products</strong>.
+                <ul>
+                    <li><strong>Keyword Matching:</strong> We check if the recall contains <em>dog- or cat-related terms</em>, such as <code>"dog food"</code>, <code>"cat treats"</code>, or <code>"kibble"</code>. We also look for <em>general pet-related clues</em>, like <code>"pet treats"</code> or <code>"companion animal"</code>.</li>
+                    <li><strong>Contamination & Recall Warnings:</strong> We monitor recalls mentioning safety risks such as <em>contamination, bacterial infections (Salmonella, E. coli, Listeria), and toxins</em>.</li>
+                    <li><strong>Personalized Alerts:</strong> If you’ve set up preferences for specific brands, we’ll send you an alert <em>only if your tracked brand is affected</em> (if you opted for this). Otherwise, you’ll receive all pet food-related recall alerts.</li>
+                </ul>
+                 Once a recall is confirmed as relevant, we <strong>immediately send an email</strong> with all the details, helping you take action to keep your pet safe.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">💲 How much does it cost?</p>
+            <p class="faq-answer">Our service is $10 per month, managed through Paddle.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">❌ How do I cancel my subscription?</p>
+            <p class="faq-answer">You can cancel anytime via the Paddle subscription link you received in your email. After canceling, you will still receive alerts until your billing cycle ends.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">📧 How do I unsubscribe from emails?</p>
+            <p class="faq-answer">If you no longer wish to receive alerts, you can click on unsubscribe link sent in emails to you and update your preferences accordingly.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">🔍 How does brand tracking work?</p>
+            <p class="faq-answer">
+                You can track specific brands in your preferences. There are two ways to set up tracking:
+                <br><br>
+                <strong>1️⃣ Enter a brand name without selecting "Send alerts only for my tracked brand":</strong><br>
+                - You will receive <strong>all pet food recalls</strong>, just like other users.<br>
+                - However, the email **subject line will be personalized**, mentioning your tracked brand (e.g., "🚨 Issue with Your Tracked Brand!").<br><br>
+
+                <strong>2️⃣ Enter a brand name and select "Send alerts only for my tracked brand":</strong><br>
+                - You will receive **alerts ONLY if your tracked brand is involved** in a recall.<br>
+                - Be aware that some brands manufacture **both pet and non-pet products**. If your brand is recalled for a non-pet product, you may still receive an alert.<br><br>
+
+                <strong>Summary:</strong>  
+                - If you don’t select "Send alerts only for my tracked brand," you get **all recalls** with a personalized subject line.  
+                - If you select "Send alerts only for my tracked brand," you get **only brand-specific recalls**, but **you might still receive non-pet product recalls** under that brand.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">🛑 What if I want to receive all recalls?</p>
+            <p class="faq-answer">If you choose not to track specific brands, you will receive **all pet food recall alerts by default**.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">📅 How often will I receive emails?</p>
+            <p class="faq-answer">We send recall emails **only when a new recall is detected**. Our system runs every **2 hours**.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">🌎 Do you cover only U.S. recalls?</p>
+            <p class="faq-answer">Yes, we currently monitor recalls issued by the **U.S. FDA**.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">📞 How do I contact support?</p>
+            <p class="faq-answer">You can reach out to us at <a href="mailto:support@petalertpro.com">support@petalertpro.com</a></p>
+        </div>
+
+
+         <div class="footer">
+             <hr class="footer-divider">
+            <div class="footer-help">
+                <h4>Need Help?</h4>
+                <p>Contact us at <a href="mailto:support@petalertpro.com">support@petalertpro.com</a>.</p>
+            </div>
+            <hr class="footer-divider">
+            <p>&copy; 2025 PetAlertPro. All rights reserved.</p>
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+        
+        <div class="footer">
+            🐾 Stay informed and keep your pets safe! – The PetAlertPro Team
+        </div>
+    </div>
+
+</body>
+</html>

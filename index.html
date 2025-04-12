@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetAlertPro - Instant Pet Food Recall Alerts</title>
+    <meta name="description" content="Stay informed about dog and cat food recalls. Track your pet’s food brand and get alerts on FDA recalls, contamination risks, and safety issues.">
+    <meta name="keywords" content="pet food recall, dog food recall, cat food recall, pet safety, pet alert, pet food contamination">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="PetAlertPro - Real-Time Pet Food Recall Alerts">
+    <meta property="og:description" content="Get instant alerts on pet food recalls and contamination risks.">
+    <meta property="og:image" content="https://petalertpro.com/assets/pet-alert-banner.jpg">
+    <meta property="og:url" content="https://petalertpro.com/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="config.js?v=1"></script>
+    <script src="config.js?v=5"></script>
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script type="text/javascript">
+      //window.location.href = "/maintenance.html";
+      if(PADDLE_MODE === "sandbox")
+      {
+          //debugger;
+          Paddle.Environment.set(PADDLE_MODE);
+      }
+        Paddle.Initialize({ 
+            token: CLIENT_TOKEN, // replace with a client-side token
+            eventCallback: function(data) {
+                paymentCallback(data);
+            }
+          });
+        
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "PetAlertPro",
+      "url": "https://petalertpro.com",
+      "description": "PetAlertPro provides real-time pet food recall and contamination alerts to keep your pets safe."
+    }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -122,17 +155,124 @@
         .footer a:hover {
             text-decoration: underline;
         }
+        .footer-help {
+            margin-bottom: 10px;
+        }
+    
+        .footer-help h4 {
+            margin: 0;
+            color: #e74c3c;
+            font-size: 16px;
+        }
+    
+        .footer-help p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .footer-divider 
+        {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 10px auto;
+            width: 80%;
+        }
+        .navbar {
+            background: #e74c3c;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0px 30px 0px 0px;
+            margin: 0;
+        }
+        .navbar .nav-links li {
+            display: inline;
+        }
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .navbar .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .navbar  ul {
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+        /* Prevents content from hiding behind fixed navbar */
+        body {
+            padding-top: 100px;
+        }
+        
+       
     </style>
+            <!-- Meta Pixel Code -->
+        <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1014873686742438');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1014873686742438&ev=PageView&noscript=1"
+        /></noscript>
+        <!-- End Meta Pixel Code -->
 </head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVZ6REZTG2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-WVZ6REZTG2');
+    </script>
 <body>
+    <div class="navbar">
+        <a href="index.html" class="logo">PetAlertPro</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+    </div>
+
     <div class="container">
-         <h2> THIS IS STAGING </h2>
         <h1>🚨 PetAlertPro: Instant Pet Food Recall Alerts! 🐶🐱</h1>
 
         <div class="why-list">
             <h2>Why PetAlertPro?</h2>
             <ul>
-                <li>🚀 Instant pet food recall alerts</li>
+                <li>🚀 Instant pet food recall alerts(USFDA)</li>
                 <li>🛡️ Protects your pets from harmful food</li>
                 <li>🔎 Track specific brands or receive all alerts</li>
                 <li>📧 Get alerts directly in your inbox</li>
@@ -140,81 +280,162 @@
             </ul>
         </div>
 
-        <div class="input-group">
+        <!--<div class="input-group">
             <label for="email">Enter your email:</label>
             <input type="email" id="email" placeholder="example@email.com" required>
-        </div>
+        </div>-->
 
         <div class="input-group">
-            <label for="brands">Enter pet food brands to track (optional, comma separated):</label>
-            <input type="text" id="brands" placeholder="e.g., Brand1, Brand2, Brand3">
+            <label for="brands">Enter pet food brands to track (optional, comma separated) – You'll still receive all alerts, but tracked brands personalize your email subject:</label>
+            <input type="text" id="brands" placeholder="e.g., Brand1, Brand2, Brand3" maxlength="200">
         </div>
 
         <div class="checkbox-group">
             <input type="checkbox" id="trackOnly">
-            <label for="trackOnly">Send alerts only for my tracked brands (even if they include non-pet products)</label>
+            <label for="trackOnly">Send alerts only for my tracked brands</label>
         </div>
 
         <button class="button" id="subscribe-button">Get Real-Time Alerts - $10/month</button>
         <div class="loading" id="loading">Processing... Please wait.</div>
 
         <div class="footer">
+            <div class="footer-help">
+                <h4>Need Help?</h4>
+                <p>For any questions, check our <a href="faq.html">FAQ</a> or contact us at <a href="mailto:support@petalertpro.com">support@petalertpro.com</a>.</p>
+            </div>
+            <hr class="footer-divider">
             <p>&copy; 2025 PetAlertPro. All rights reserved.</p>
             <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
         </div>
     </div>
 
     <script>
-        document.getElementById("subscribe-button").addEventListener("click", async function () {
-            var email = document.getElementById("email").value.trim();
+        document.getElementById("subscribe-button").addEventListener("click", function () {
+            //var email = document.getElementById("email").value.trim();
             var brands = document.getElementById("brands").value.trim();
             var trackOnly = document.getElementById("trackOnly").checked;
 
-            if (!email) {
+            /*if (!email) {
                 alert("Please enter a valid email.");
                 return;
-            }
+            }*/
+
+              const inputBrands = brands.split(",").map(b => b.trim()).filter(b => b.length > 0);
+              const invalidBrands = inputBrands.filter(b => b.replace(/\s/g, "").length < 4);
+            
+              if (invalidBrands.length > 0) {
+                //e.preventDefault();
+                alert("Each brand must be at least 4 characters long (excluding spaces).");
+                return;
+              }
 
             // Disable inputs and show processing message
             document.getElementById("subscribe-button").disabled = true;
-            document.getElementById("email").disabled = true;
+            //document.getElementById("email").disabled = true;
             document.getElementById("brands").disabled = true;
             document.getElementById("trackOnly").disabled = true;
             document.getElementById("loading").style.display = "block";
 
             try {
-                var formData = new FormData();
-                formData.append("email", email);
-                formData.append("brands", brands);
-                formData.append("trackedOnly", trackOnly.toString());
-
-                let response = await apiRequest("/subscribe", {
-                    method: "POST",
-                    body: formData
+                var itemsList = [
+                      {
+                        priceId: PADDLE_PRICE_ID,
+                        quantity: 1
+                      }
+                    ];
+                
+                Paddle.Checkout.open({
+                  settings: {
+                    displayMode: "overlay",
+                    theme: "light",
+                    locale: "en"
+                  },
+                  items: itemsList
+                  //customer: {email: email }
                 });
-
-                let data = await response.json();
-                if (data.status === "503") {
-                  // Redirect to the maintenance page
-                  window.location.href = "/maintenance.html";
-                }
-                else if (data.status === "success") {
-                    window.location.href = "https://petalertpro.com/thank-you.html";
-                } else {
-                    alert(data.message || "Something went wrong. Please try again.");
-                }
             } catch (error) {
-                alert("Failed to submit. Please try again later.");
+                alert("Issue With Payment gateway. Please try again later.");
                 console.error("Error:", error);
             } finally {
                 // Re-enable inputs and hide loading message
                 document.getElementById("subscribe-button").disabled = false;
-                document.getElementById("email").disabled = false;
+                //document.getElementById("email").disabled = false;
                 document.getElementById("brands").disabled = false;
                 document.getElementById("trackOnly").disabled = false;
                 document.getElementById("loading").style.display = "none";
             }
         });
+
+        async function paymentCallback (event) {
+        	//var email = document.getElementById("email").value.trim();
+        	var brands = document.getElementById("brands").value.trim();
+        	var trackOnly = document.getElementById("trackOnly").checked;
+        
+        	/*if (!email) {
+        		alert("Please enter a valid email.");
+        		return;
+        	}*/
+        
+        	// Disable inputs and show processing message
+        	document.getElementById("subscribe-button").disabled = true;
+        	//document.getElementById("email").disabled = true;
+        	document.getElementById("brands").disabled = true;
+        	document.getElementById("trackOnly").disabled = true;
+        	document.getElementById("loading").style.display = "block";
+            console.log(event);
+        	try {
+                if (event.name == "checkout.completed") {
+                    var formData = new FormData();
+            		formData.append("email", event.data.customer.email);
+            		formData.append("brands", brands);
+            		formData.append("trackedOnly", trackOnly.toString());
+                    formData.append("customerId", event.data.customer.id);
+            
+            		let response1 = await apiRequest("/subscribe", {
+            			method: "POST",
+            			body: formData
+            		});
+            
+            		let response = await response1.json();
+            		if (response.status === "503") {
+            		  // Redirect to the maintenance page
+            		  window.location.href = "/maintenance.html";
+            		}
+            		else if (response.status === "success") {
+            			window.location.href = "https://petalertpro.com/thank-you.html";
+            		} else {
+            			alert(response.message || "Something went wrong. Please try again.");
+            		}
+                }
+                else if (event.name == "checkout.closed" && event.status == "completed") {
+                     alert("Payment seems to completed. Please wait for confirmation");
+                     console.error("checkout.closed:", event);
+                }
+                else if (event.name == "checkout.payment.failed") {
+                     alert("Payment failed. Please check your details and try again.");
+                     console.error("Payment failed:", event);
+                }
+                else if (event.name == "checkout.error" || event.name == "checkout.warning") {
+                     alert("An warning/error: " + event.message +  " Please try again later.");
+                     console.error("Payment failed:", event);
+                }
+                else
+                {
+                    console.log(event);
+                    //alert("Issue with payment gateway. If you are billed and didnt recieve the confirmation email please contact us at ." + SUPPORT_EMAIL );
+                }
+        	} catch (error) {
+        		alert("Failed to Subscribed. If you are billed and didnt recieve the confirmation email please contact us at ." + SUPPORT_EMAIL );
+        		console.error("Error:", error);
+        	} finally {
+        		// Re-enable inputs and hide loading message
+        		document.getElementById("subscribe-button").disabled = false;
+        		//document.getElementById("email").disabled = false;
+        		document.getElementById("brands").disabled = false;
+        		document.getElementById("trackOnly").disabled = false;
+        		document.getElementById("loading").style.display = "none";
+        	}
+        }
     </script>
 
 </body>
